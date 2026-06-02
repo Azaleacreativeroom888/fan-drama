@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | The Drama Parlour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --crimson: #80002b;
+      --crimson-light: #a8003a;
+      --crimson-deeper: #3b0013;
+      --cream: #f5ede0;
+      --cream-dark: #e8d8c0;
+      --gold: #b8933a;
+      --gold-light: #d4aa55;
+      --ink: #1a0a0f;
+      --ink-mid: #2e1520;
+      --text-muted: #7a5060;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--ink);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(26,10,15,0.97), rgba(26,10,15,0.7));
+      border-bottom: 1px solid rgba(184,147,58,0.25);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold-light); }
+
+    /* PAGE */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 5rem;
+    }
+
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(184,147,58,0.2);
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(184,147,58,0.35), transparent);
+    }
+
+    /* ABOUT TEXT */
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      line-height: 2;
+      color: var(--cream-dark);
+      margin-bottom: 3rem;
+      border-left: 2px solid var(--crimson);
+      padding-left: 1.4rem;
+    }
+
+    .about-text em {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    /* LINK GRID */
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 3.5rem;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      background: var(--ink-mid);
+      border: 1px solid rgba(184,147,58,0.15);
+      border-radius: 2px;
+      padding: 1rem 1.2rem;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .link-card:hover {
+      border-color: rgba(184,147,58,0.5);
+      transform: translateY(-2px);
+    }
+
+    .link-icon {
+      font-size: 1.1rem;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(128,0,43,0.25);
+      border: 1px solid rgba(128,0,43,0.4);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .link-text { flex: 1; min-width: 0; }
+
+    .link-name {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .link-desc {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .link-arrow {
+      font-size: 1rem;
+      color: var(--gold);
+      opacity: 0.5;
+      transition: opacity 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .link-card:hover .link-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* FORM */
+    .form-wrap {
+      background: var(--ink-mid);
+      border: 1px solid rgba(184,147,58,0.15);
+      border-radius: 2px;
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .form-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.6rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .required { color: var(--crimson-light); margin-left: 3px; }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: rgba(26,10,15,0.6);
+      border: 1px solid rgba(184,147,58,0.2);
+      border-radius: 1px;
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      padding: 0.65rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--text-muted); font-style: italic; }
+
+    .form-input:focus,
+    .form-textarea:focus { border-color: rgba(184,147,58,0.55); }
+
+    .form-textarea { resize: vertical; min-height: 130px; }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--crimson);
+      border: 1px solid var(--crimson-light);
+      border-radius: 1px;
+      color: var(--cream);
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .form-submit:hover { background: var(--crimson-light); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .form-success {
+      background: rgba(128,0,43,0.15);
+      border: 1px solid rgba(128,0,43,0.4);
+      border-radius: 1px;
+      padding: 1rem 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--cream-dark);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      display: none;
+    }
+
+    /* NOTICE */
+    .notice {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      border-top: 1px solid rgba(184,147,58,0.12);
+      padding-top: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(184,147,58,0.15);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    footer p { font-size: 0.72rem; letter-spacing: 0.15em; color: var(--text-muted); }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .page { padding: 6rem 1.2rem 4rem; }
+      .link-grid { grid-template-columns: 1fr; }
+      .form-wrap { padding: 1.4rem 1.2rem; }
+      footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">THE DRAMA PARLOUR</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ranking.html">Ranking</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+
+    <p class="page-title">About</p>
+    <p class="page-subtitle">The Drama Parlour について</p>
+
+    <!-- ABOUT -->
+    <div class="section-label">This Site</div>
+    <p class="about-text">
+      ドラマ・映画・小説・漫画——<em>観て、読んで、感じたことの記録</em>。<br />
+      ここは感想を残しておく、自分だけの小さな応接室です。<br /><br />
+      ランキングは随時更新し、年末に確定します。<br />
+      ネタバレを含む記事があります。ご注意ください。
+    </p>
+
+    <!-- LINKS -->
+    <div class="section-label">Links</div>
+    <div class="link-grid">
+
+      <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+        <div class="link-icon">🦋</div>
+        <div class="link-text">
+          <span class="link-name">Bluesky</span>
+          <span class="link-desc">近況・お知らせ</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+        <div class="link-icon">✒️</div>
+        <div class="link-text">
+          <span class="link-name">カクヨム</span>
+          <span class="link-desc">小説を掲載</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/" target="_blank" rel="noopener">
+        <div class="link-icon">🎨</div>
+        <div class="link-text">
+          <span class="link-name">漫画掲載サイト</span>
+          <span class="link-desc">漫画を投稿中</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+        <div class="link-icon">📖</div>
+        <div class="link-text">
+          <span class="link-name">書評サイト</span>
+          <span class="link-desc">小説のレビュー</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="section-label">Contact</div>
+    <div class="form-wrap">
+      <p class="form-intro">ご質問・ご感想はこちらからどうぞ。</p>
+
+      <div class="form-success" id="form-success">
+        ✉️ メッセージを送信しました。ありがとうございます。
+      </div>
+
+      <form id="contact-form">
+        <div class="form-group">
+          <label class="form-label" for="name">お名前</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="名前" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="メッセージを入力してください…" rows="6" required></textarea>
+        </div>
+        <button class="form-submit" type="submit">送信する</button>
+      </form>
+    </div>
+
+    <!-- NOTICE -->
+    <p class="notice">
+      当サイトに掲載されている文章・レビューについて、AI学習への利用、無断転載・二次利用を禁止します。<br />
+      Please refrain from using any text or reviews on this website for AI training, unauthorized reproduction, or secondary use.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>© The Drama Parlour &nbsp;·&nbsp; All rights reserved</p>
+    <div class="footer-logo">THE DRAMA PARLOUR</div>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const success = document.getElementById('form-success');
+      success.style.display = 'block';
+      this.reset();
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+
+</body>
+</html>
