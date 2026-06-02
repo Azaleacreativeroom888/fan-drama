@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | The Drama Parlour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --crimson: #80002b;
+      --crimson-dark: #5a001e;
+      --crimson-deeper: #3b0013;
+      --crimson-light: #a8003a;
+      --cream: #f5ede0;
+      --cream-dark: #e8d8c0;
+      --gold: #b8933a;
+      --gold-light: #d4aa55;
+      --ink: #1a0a0f;
+      --ink-mid: #2e1520;
+      --text-body: #3d1f28;
+      --text-muted: #7a5060;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--ink);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(26,10,15,0.97), rgba(26,10,15,0.7));
+      border-bottom: 1px solid rgba(184,147,58,0.25);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold-light); }
+
+    /* PAGE */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 5rem;
+    }
+
+    /* PAGE TITLE */
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(184,147,58,0.2);
+    }
+
+    /* POSTS */
+    .posts {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(184,147,58,0.1);
+      align-items: baseline;
+    }
+
+    .post:first-child {
+      border-top: 1px solid rgba(184,147,58,0.1);
+    }
+
+    .post-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .post-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--cream-dark);
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(184,147,58,0.15);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .page { padding: 6rem 1.2rem 4rem; }
+      .post { grid-template-columns: 1fr; gap: 0.3rem; }
+      footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">THE DRAMA PARLOUR</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ranking.html">Ranking</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+
+    <p class="page-title">Blog</p>
+    <p class="page-subtitle">備忘録。ネタバレを含みます。</p>
+
+    <div class="posts">
+
+      <div class="post">
+        <div class="post-date">2026.06.01</div>
+        <div class="post-text">黒沢明の映画制覇したい。教養として。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.30</div>
+        <div class="post-text">ワンピースいろいろ言われてるけど、むしろエッグヘッド編とかエルバフ編のほうが面白いまである。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.30</div>
+        <div class="post-text">LOST面白い！　役者も演技上手くて良い。でも、エンディングが残念なドラマに選ばれてたから、それを最後まで見届けようと思う（笑）</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.29</div>
+        <div class="post-text">ウォーキングデッドちょっとキツイな。話の進み具合がゆっくりすぎる。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.28</div>
+        <div class="post-text">ピクサー好きだけど、最近のピクサーは登場人物が常識なくて苦手。最低限の常識はほしい。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.27</div>
+        <div class="post-text">新しいコンテンツを入れるのが若干辛くなってきた。年かな。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.23</div>
+        <div class="post-text">「広くいろんなものを見るんじゃなくて、これからは深掘りしていきたい」と周りに宣言しつつも、未だに新しい面白い映画を探し続けてる。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.22</div>
+        <div class="post-text">バズライトイヤー予想してたよりかは面白かった。批判されてるところはなんとなく観て分かった。「あぁ、このことね」ってなった。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.20</div>
+        <div class="post-text">間宮祥太朗は演技上手くて良い感じ。この世代で好きなのは、間宮祥太朗と、吉沢亮と、松坂桃李。演技上手くて安心感がある。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.17</div>
+        <div class="post-text">原田マハの小説はやっぱり面白い。「本日は、お日柄もよく」の冒頭数ページ読んだだけで「面白っ！」ってなった。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.16</div>
+        <div class="post-text">なんか洋書の翻訳が微妙だな。読みにくい。英語の原書で読んだ方がすっと入ってくる。そう考えると「プロジェクトヘイルメアリー」の翻訳は神。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.14</div>
+        <div class="post-text">ウォーキングデッド面白いけど、２倍速くらいで観たい。展開がちょっと遅い。３話くらいから一気に展開が早くなる。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.09</div>
+        <div class="post-text">ハンターハンターと北斗の拳読み始めた。面白いのは言わずもがなだけど、なぜかすごく読みやすい。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.05.04</div>
+        <div class="post-text">ピクサーを順番に観てるんだけどマーベルと違ってぜんぜん苦じゃない。マーベルのコミックは割と好きなんだけどな。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.04.22</div>
+        <div class="post-text">トイストーリー３は本当に名作。アンディ…………ヤバい。泣いた。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026.04.21</div>
+        <div class="post-text">マーベル作品ちょっとギブアップかもしれない。私には合わなかった。マーベル作品が好きな人の話を聞くのは楽しいんだけどな。</div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© The Drama Parlour &nbsp;·&nbsp; All rights reserved</p>
+    <div class="footer-logo">THE DRAMA PARLOUR</div>
+  </footer>
+
+</body>
+</html>
