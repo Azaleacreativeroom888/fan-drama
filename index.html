@@ -1,641 +1,351 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Drama Parlour</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --crimson: #80002b;
-      --crimson-dark: #5a001e;
-      --crimson-deeper: #3b0013;
-      --crimson-light: #a8003a;
+      --wine: #80002b;
+      --wine-dark: #5a001e;
+      --wine-mid: #a8003a;
+      --wine-light: #d4547a;
       --cream: #f5ede0;
-      --cream-dark: #e8d8c0;
-      --gold: #b8933a;
-      --gold-light: #d4aa55;
-      --ink: #1a0a0f;
-      --ink-mid: #2e1520;
-      --text-body: #3d1f28;
-      --text-muted: #7a5060;
+      --cream-mid: #e8d8c0;
+      --cream-dark: #c4a882;
+      --text: #2c1018;
+      --text-sub: #6b3a48;
+      --font: 'Noto Serif JP', serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--ink);
-      color: var(--cream);
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
+      font-family: var(--font);
+      background-color: var(--wine);
+      color: var(--text);
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        0deg, transparent, transparent 2px,
-        rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 100;
-      background: linear-gradient(to bottom, rgba(26,10,15,0.97), rgba(26,10,15,0.7));
-      border-bottom: 1px solid rgba(184,147,58,0.25);
-      padding: 0 3rem;
+    /* HEADER */
+    header {
+      background: rgba(90,0,30,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--wine-mid);
+      padding: .85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--cream);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    nav ul { list-style: none; display: flex; gap: 6px; flex-wrap: wrap; }
 
-    .nav-links a {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream-dark);
+    nav a {
+      font-size: 13px;
       text-decoration: none;
-      transition: color 0.3s;
+      color: var(--cream);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+      font-family: var(--font);
     }
 
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--gold-light); }
+    nav a:hover { background: rgba(255,255,255,0.25); color: #fff; }
+    nav a.active { background: var(--cream); color: var(--wine-dark); border-color: var(--cream); }
+
+    main { max-width: 720px; margin: 0 auto; padding: 0 1rem 3rem; }
 
     /* HERO */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 8rem 2rem 4rem;
-      overflow: hidden;
+      padding: 3.5rem 1.5rem 3rem;
     }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -60%);
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(128,0,43,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .ornament {
-      font-family: 'IM Fell English', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      letter-spacing: 0.6em;
-      margin-bottom: 2rem;
-      opacity: 0.8;
-      animation: fadeUp 1s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      font-weight: 400;
+    .hero-en {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 8vw, 3.6rem);
+      font-weight: 900;
+      font-style: italic;
       color: var(--cream);
-      line-height: 1.05;
-      letter-spacing: 0.06em;
-      animation: fadeUp 1s ease 0.15s both;
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      margin-bottom: .5rem;
+      text-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+      animation: fadeUp .7s ease both;
     }
 
-    .hero-title span {
-      display: block;
-      font-size: 0.42em;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      color: var(--gold-light);
-      margin-bottom: 0.4rem;
+    .hero-ja {
+      font-family: var(--font);
+      font-size: clamp(.95rem, 3.5vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(245,237,224,0.7);
+      letter-spacing: .25em;
+      margin-bottom: 2rem;
+      animation: fadeUp .7s .15s ease both;
     }
 
     .hero-divider {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      margin: 2rem auto;
-      width: 320px;
-      animation: fadeUp 1s ease 0.3s both;
-    }
-
-    .hero-divider::before,
-    .hero-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-    }
-
-    .hero-divider-diamond {
-      width: 8px; height: 8px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-      max-width: 480px;
-      animation: fadeUp 1s ease 0.45s both;
-    }
-
-    /* SECTIONS */
-    .section {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
+      justify-content: center;
+      gap: 12px;
       margin-bottom: 2rem;
+      animation: fadeUp .7s .25s ease both;
     }
 
-    .section-header h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      white-space: nowrap;
-    }
+    .hero-divider-line { width: 60px; height: 1px; background: rgba(245,237,224,0.4); }
+    .hero-divider-icon { color: rgba(245,237,224,0.4); font-size: 16px; letter-spacing: .2em; }
 
-    .section-header::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(184,147,58,0.4), transparent);
-    }
-
-    /* ABOUT CARD — cream background */
+    /* ABOUT CARD */
     .about-card {
-      background: var(--cream);
+      background: rgba(255,255,255,0.92);
+      border-radius: 18px;
       border: 1px solid var(--cream-dark);
-      border-radius: 2px;
-      padding: 2.5rem 3rem;
-      margin-bottom: 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      gap: 2.5rem;
-      align-items: center;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      text-align: left;
+      animation: fadeUp .7s .3s ease both;
     }
 
-    .about-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      line-height: 1.9;
-      color: var(--text-body);
-    }
-
-    .about-text em {
-      color: var(--crimson);
+    .about-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
       font-style: italic;
-    }
-
-    .about-divider-v {
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent, rgba(128,0,43,0.25), transparent);
-    }
-
-    .about-stats {
+      color: var(--wine-dark);
+      margin-bottom: 1rem;
       display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
       align-items: center;
-      text-align: center;
+      gap: 8px;
     }
 
-    .stat-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .about-card p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.9;
+      margin-bottom: .75rem;
+    }
 
-    .stat-number {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      font-weight: 400;
-      color: var(--crimson);
+    .about-card p:last-child { margin-bottom: 0; }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1.75rem;
+      animation: fadeUp .7s .4s ease both;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.88);
+      border-radius: 14px;
+      border: 1px solid var(--cream-mid);
+      padding: 1.1rem .75rem;
+      text-align: center;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--wine);
       line-height: 1;
     }
 
-    .stat-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+    .stat-label { font-size: 12px; color: var(--text-sub); margin-top: .35rem; line-height: 1.4; }
+
+    /* GENRE */
+    .genre-section {
+      background: rgba(255,255,255,0.88);
+      border-radius: 18px;
+      border: 1px solid var(--cream-mid);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.75rem;
     }
 
-    /* DRAMA CARDS — cream background */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .drama-card {
-      position: relative;
-      background: var(--cream);
-      border: 1px solid var(--cream-dark);
-      border-radius: 2px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .drama-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-
-    .card-img-placeholder {
-      width: 100%;
-      aspect-ratio: 3/2;
-      background: var(--crimson-deeper);
-      position: relative;
-      overflow: hidden;
+    .genre-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--wine-dark);
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
     }
 
-    .card-img-placeholder::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(26,10,15,0.85));
+    .genre-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .genre-tag {
+      font-size: 13px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: var(--font);
+      cursor: default;
     }
 
-    .card-img-label {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      color: rgba(245,237,224,0.12);
-      letter-spacing: 0.1em;
-      text-align: center;
-      padding: 1rem;
-      line-height: 1.3;
-    }
+    .gt-wine { background: #f5e0e6; color: var(--wine-dark); border: 1px solid #d4547a; }
+    .gt-cream { background: var(--cream); color: var(--text); border: 1px solid var(--cream-dark); }
 
-    .card-genre-badge {
-      position: absolute;
-      top: 0.8rem; right: 0.8rem;
-      z-index: 2;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: var(--crimson);
-      color: var(--cream);
-      padding: 0.25rem 0.6rem;
-      border-radius: 1px;
-    }
-
-    .card-body { padding: 1.2rem 1.4rem 1.4rem; }
-
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--text-body);
-      margin-bottom: 0.35rem;
-      line-height: 1.3;
-    }
-
-    .card-meta {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-stars { display: flex; gap: 3px; margin-bottom: 0.7rem; }
-
-    .star {
-      width: 10px; height: 10px;
-      background: var(--gold);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    }
-
-    .star.empty { background: rgba(184,147,58,0.25); }
-
-    .card-comment {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      border-left: 2px solid var(--crimson);
-      padding-left: 0.8rem;
-    }
-
-    /* BLOG LIST — cream background */
-    .blog-list {
-      border: 1px solid var(--cream-dark);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .blog-row {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      align-items: baseline;
-      gap: 2rem;
-      padding: 1.3rem 1.8rem;
-      background: var(--cream);
-      transition: background 0.2s;
-      border-bottom: 1px solid rgba(128,0,43,0.1);
-    }
-
-    .blog-row:last-child { border-bottom: none; }
-    .blog-row:hover { background: var(--cream-dark); }
-
-    .blog-date {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      color: var(--crimson);
-      letter-spacing: 0.15em;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .blog-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: var(--text-body);
-    }
-
-    /* NAV CARDS — cream background */
+    /* NAV CARDS */
     .nav-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1.75rem;
     }
 
     .nav-card {
-      background: var(--cream);
-      border: 1px solid var(--cream-dark);
-      border-radius: 2px;
-      padding: 1.5rem 1rem;
+      background: rgba(255,255,255,0.88);
+      border-radius: 14px;
+      border: 1px solid var(--cream-mid);
+      padding: 1.2rem 1rem;
       text-align: center;
       text-decoration: none;
+      transition: transform .15s, box-shadow .15s, background .15s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      gap: .4rem;
     }
 
-    .nav-card:hover {
-      background: var(--cream-dark);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
+    .nav-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); background: var(--cream); }
 
-    .nav-card-icon { font-size: 1.6rem; }
-
-    .nav-card-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-body);
-    }
-
-    .nav-card-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
+    .nav-card-icon { font-size: 26px; }
+    .nav-card-label { font-size: 13px; font-weight: 700; color: var(--wine-dark); font-family: var(--font); }
+    .nav-card-sub { font-size: 11px; color: var(--text-sub); }
 
     /* FOOTER */
     footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(184,147,58,0.15);
-      padding: 2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4rem;
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 12px;
+      color: rgba(245,237,224,0.6);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.15);
     }
 
-    footer p { font-size: 0.72rem; letter-spacing: 0.15em; color: var(--text-muted); }
+    footer a { color: var(--cream-mid); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      opacity: 0.6;
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 700px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .section { padding: 3rem 1.5rem; }
-      .about-card { grid-template-columns: 1fr; }
-      .about-divider-v { display: none; }
+    @media (max-width: 600px) {
+      .stats { grid-template-columns: 1fr 1fr; }
       .nav-cards { grid-template-columns: 1fr 1fr; }
-      footer { flex-direction: column; gap: 0.8rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="index.html">THE DRAMA PARLOUR</a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="ranking.html">Ranking</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
+<header>
+  <a class="logo" href="index.html">🎭 The Drama Parlour</a>
+  <nav><ul>
+    <li><a href="index.html" class="active">ホーム</a></li>
+    <li><a href="ranking.html">ランキング</a></li>
+    <li><a href="blog.html">ブログ</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul></nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-    <h1 class="hero-title">
-      <span>Welcome to</span>
-      The Drama Parlour
-    </h1>
-    <div class="hero-divider"><div class="hero-divider-diamond"></div></div>
-    <p class="hero-tagline">A private salon for drama lovers. Stories collected, ranked, and remembered.</p>
-  </section>
+<main>
 
-  <!-- ABOUT BOX -->
-  <div class="section" style="padding-top: 0;">
-    <div class="section-header"><h2>About This Site</h2></div>
-    <div class="about-card">
-      <p class="about-text">
-        骨董品店の奥にある小さな応接室へようこそ。<br />
-        ここは<em>ドラマの記憶</em>を集め、並べ、語る場所。<br />
-        見たものは忘れない。感じたことは残る。
-      </p>
-      <div class="about-divider-v"></div>
-      <div class="about-stats">
-        <div class="stat-item">
-          <span class="stat-number">—</span>
-          <span class="stat-label">Works Watched</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">—</span>
-          <span class="stat-label">Reviews Written</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">—</span>
-          <span class="stat-label">Genres Explored</span>
-        </div>
-      </div>
+  <div class="hero">
+    <div class="hero-en">The Drama Parlour</div>
+    <div class="hero-ja">— ドラマ・映画・小説 観賞記録 —</div>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <span class="hero-divider-icon">✦ ✦ ✦</span>
+      <div class="hero-divider-line"></div>
     </div>
   </div>
 
-  <!-- RECENTLY WATCHED -->
-  <div class="section" style="padding-top: 0;">
-    <div class="section-header"><h2>Recently Watched</h2></div>
-    <div class="card-grid">
+  <div class="about-card">
+    <h2>🎭 このサイトについて</h2>
+    <p>ドラマ・映画・小説・漫画——観て、読んで、感じたことを記録していくAzalea72のサイトです。</p>
+    <p>ランキングは随時更新し、年末に確定します。ネタバレを含む記事があります。ご注意ください。</p>
+    <p>好きなジャンルはミステリー・SF・ファンタジー。コメディドラマも好きです。</p>
+  </div>
 
-      <a class="drama-card" href="ranking.html">
-        <div class="card-img-placeholder">
-          <div class="card-img-label">Murders in the Building</div>
-          <span class="card-genre-badge">Mystery</span>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Only Murders in the Building</p>
-          <p class="card-meta">2021 &nbsp;·&nbsp; Hulu</p>
-          <div class="card-stars">
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-          </div>
-          <p class="card-comment">三人の組み合わせが最高。アンティークな雰囲気も好き。</p>
-        </div>
-      </a>
-
-      <a class="drama-card" href="ranking.html">
-        <div class="card-img-placeholder">
-          <div class="card-img-label">Drama Title</div>
-          <span class="card-genre-badge">Drama</span>
-        </div>
-        <div class="card-body">
-          <p class="card-title">次に見た作品</p>
-          <p class="card-meta">Year &nbsp;·&nbsp; Platform</p>
-          <div class="card-stars">
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star empty"></div>
-          </div>
-          <p class="card-comment">感想をここに書く。</p>
-        </div>
-      </a>
-
-      <a class="drama-card" href="ranking.html">
-        <div class="card-img-placeholder">
-          <div class="card-img-label">Drama Title</div>
-          <span class="card-genre-badge">Thriller</span>
-        </div>
-        <div class="card-body">
-          <p class="card-title">次に見た作品</p>
-          <p class="card-meta">Year &nbsp;·&nbsp; Platform</p>
-          <div class="card-stars">
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star empty"></div><div class="star empty"></div>
-          </div>
-          <p class="card-comment">感想をここに書く。</p>
-        </div>
-      </a>
-
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">—</div>
+      <div class="stat-label">作品数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">—</div>
+      <div class="stat-label">レビュー済み</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">観たいもの</div>
     </div>
   </div>
 
-  <!-- BLOG -->
-  <div class="section" style="padding-top: 0;">
-    <div class="section-header"><h2>Latest from the Blog</h2></div>
-    <div class="blog-list">
-      <a class="blog-row" href="blog.html">
-        <span class="blog-date">2026.06.01</span>
-        <span class="blog-title">黒沢明の映画制覇したい。教養として。</span>
-      </a>
-      <a class="blog-row" href="blog.html">
-        <span class="blog-date">2026.05.30</span>
-        <span class="blog-title">LOST面白い！　役者も演技上手くて良い。</span>
-      </a>
-      <a class="blog-row" href="blog.html">
-        <span class="blog-date">2026.05.29</span>
-        <span class="blog-title">ウォーキングデッドちょっとキツイな。話の進み具合がゆっくりすぎる。</span>
-      </a>
+  <div class="genre-section">
+    <h2>🏷️ 好きなジャンル</h2>
+    <div class="genre-tags">
+      <span class="genre-tag gt-wine">ミステリー</span>
+      <span class="genre-tag gt-cream">SF</span>
+      <span class="genre-tag gt-wine">コメディドラマ</span>
+      <span class="genre-tag gt-cream">アニメ映画</span>
+      <span class="genre-tag gt-wine">ファンタジー</span>
+      <span class="genre-tag gt-cream">純文学</span>
     </div>
   </div>
 
-  <!-- NAV CARDS -->
-  <div class="section" style="padding-top: 0;">
-    <div class="section-header"><h2>Explore</h2></div>
-    <div class="nav-cards">
-      <a class="nav-card" href="ranking.html">
-        <span class="nav-card-icon">📊</span>
-        <span class="nav-card-label">Ranking</span>
-        <span class="nav-card-sub">作品を順位づけ</span>
-      </a>
-      <a class="nav-card" href="blog.html">
-        <span class="nav-card-icon">📝</span>
-        <span class="nav-card-label">Blog</span>
-        <span class="nav-card-sub">観賞日記・備忘録</span>
-      </a>
-      <a class="nav-card" href="about.html">
-        <span class="nav-card-icon">✉️</span>
-        <span class="nav-card-label">About</span>
-        <span class="nav-card-sub">サイト紹介・リンク</span>
-      </a>
-    </div>
+  <div class="nav-cards">
+    <a class="nav-card" href="ranking.html">
+      <span class="nav-card-icon">📊</span>
+      <span class="nav-card-label">ランキング</span>
+      <span class="nav-card-sub">作品を順位づけ</span>
+    </a>
+    <a class="nav-card" href="blog.html">
+      <span class="nav-card-icon">📝</span>
+      <span class="nav-card-label">ブログ</span>
+      <span class="nav-card-sub">観賞日記・備忘録</span>
+    </a>
+    <a class="nav-card" href="about.html">
+      <span class="nav-card-icon">✉️</span>
+      <span class="nav-card-label">About</span>
+      <span class="nav-card-sub">サイト紹介・リンク</span>
+    </a>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© The Drama Parlour &nbsp;·&nbsp; All rights reserved</p>
-    <div class="footer-logo">THE DRAMA PARLOUR</div>
-  </footer>
+</main>
+
+<footer>
+  © The Drama Parlour &nbsp;|&nbsp;
+  <a href="ranking.html">ランキング</a> &nbsp;|&nbsp;
+  <a href="blog.html">ブログ</a> &nbsp;|&nbsp;
+  <a href="about.html">About</a>
+</footer>
 
 </body>
 </html>
