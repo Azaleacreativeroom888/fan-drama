@@ -1,474 +1,197 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | The Drama Parlour</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --crimson: #80002b;
-      --crimson-light: #a8003a;
-      --crimson-deeper: #3b0013;
-      --cream: #f5ede0;
-      --cream-dark: #e8d8c0;
-      --gold: #b8933a;
-      --gold-light: #d4aa55;
-      --ink: #1a0a0f;
-      --ink-mid: #2e1520;
-      --text-muted: #7a5060;
+      --wine: #80002b; --wine-dark: #5a001e; --wine-mid: #a8003a; --wine-light: #d4547a;
+      --cream: #f5ede0; --cream-mid: #e8d8c0; --cream-dark: #c4a882;
+      --text: #2c1018; --text-sub: #6b3a48; --font: 'Noto Serif JP', serif;
     }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background-color: var(--wine); color: var(--text); min-height: 100vh; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    header { background: rgba(90,0,30,0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--wine-mid); padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; color: var(--cream); text-decoration: none; display: flex; align-items: center; gap: 7px; }
+    nav ul { list-style: none; display: flex; gap: 6px; flex-wrap: wrap; }
+    nav a { font-size: 13px; text-decoration: none; color: var(--cream); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); padding: 5px 14px; border-radius: 20px; transition: background .15s, color .15s; white-space: nowrap; font-family: var(--font); }
+    nav a:hover { background: rgba(255,255,255,0.25); color: #fff; }
+    nav a.active { background: var(--cream); color: var(--wine-dark); border-color: var(--cream); }
 
-    body {
-      background-color: var(--ink);
-      color: var(--cream);
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-    }
+    main { max-width: 680px; margin: 0 auto; padding: 0 1rem 3rem; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        0deg, transparent, transparent 2px,
-        rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
+    .page-header { background: rgba(255,255,255,0.92); border-radius: 18px; border: 1px solid var(--cream-dark); padding: 1.6rem 1.8rem; margin-bottom: 1.25rem; box-shadow: 0 4px 24px rgba(0,0,0,0.2); margin-top: 2rem; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--wine-dark); margin-bottom: .35rem; }
+    .page-header p { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 100;
-      background: linear-gradient(to bottom, rgba(26,10,15,0.97), rgba(26,10,15,0.7));
-      border-bottom: 1px solid rgba(184,147,58,0.25);
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
+    .section-head { font-size: .85rem; font-weight: 700; color: var(--cream); margin-bottom: .75rem; display: flex; align-items: center; gap: 8px; padding-left: 2px; opacity: 0.8; }
+    .section-head::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(245,237,224,0.4), transparent); }
 
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream-dark);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--gold-light); }
-
-    /* PAGE */
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 7rem 1.5rem 5rem;
-    }
-
-    .page-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.6rem;
-    }
-
-    .page-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(184,147,58,0.2);
-    }
-
-    /* SECTION LABEL */
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(184,147,58,0.35), transparent);
-    }
-
-    /* ABOUT TEXT */
-    .about-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.08rem;
-      line-height: 2;
-      color: var(--cream-dark);
-      margin-bottom: 3rem;
-      border-left: 2px solid var(--crimson);
-      padding-left: 1.4rem;
-    }
-
-    .about-text em {
-      color: var(--gold-light);
-      font-style: italic;
-    }
+    /* ABOUT CARD */
+    .about-card { background: rgba(255,255,255,0.92); border-radius: 18px; border: 1px solid var(--cream-mid); padding: 1.6rem 1.8rem; margin-bottom: 1.25rem; box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
+    .about-card h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; color: var(--wine-dark); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+    .about-card p { font-size: 14px; color: var(--text-sub); line-height: 1.9; margin-bottom: .75rem; }
+    .about-card p:last-child { margin-bottom: 0; }
 
     /* LINK GRID */
-    .link-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 3.5rem;
-    }
+    .link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
 
-    .link-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      background: var(--ink-mid);
-      border: 1px solid rgba(184,147,58,0.15);
-      border-radius: 2px;
-      padding: 1rem 1.2rem;
-      transition: border-color 0.25s, transform 0.2s;
-    }
+    .link-card { display: flex; align-items: center; gap: 12px; text-decoration: none; background: rgba(255,255,255,0.88); border: 1px solid var(--cream-mid); border-radius: 14px; padding: 13px 14px; transition: transform .15s, box-shadow .15s; }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 
-    .link-card:hover {
-      border-color: rgba(184,147,58,0.5);
-      transform: translateY(-2px);
-    }
-
-    .link-icon {
-      font-size: 1.1rem;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(128,0,43,0.25);
-      border: 1px solid rgba(128,0,43,0.4);
-      border-radius: 1px;
-      flex-shrink: 0;
-    }
-
+    .link-icon { font-size: 20px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: #f5e0e6; border-radius: 10px; flex-shrink: 0; }
     .link-text { flex: 1; min-width: 0; }
-
-    .link-name {
-      display: block;
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: var(--cream);
-      margin-bottom: 2px;
-    }
-
-    .link-desc {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .link-arrow {
-      font-size: 1rem;
-      color: var(--gold);
-      opacity: 0.5;
-      transition: opacity 0.2s, transform 0.2s;
-      flex-shrink: 0;
-    }
-
-    .link-card:hover .link-arrow {
-      opacity: 1;
-      transform: translateX(3px);
-    }
+    .link-name { display: block; font-size: 13px; font-weight: 700; color: var(--wine-dark); margin-bottom: 2px; }
+    .link-desc { display: block; font-size: 11px; color: var(--text-sub); line-height: 1.5; }
+    .link-arrow { font-size: 16px; color: var(--cream-dark); flex-shrink: 0; transition: transform .15s; }
+    .link-card:hover .link-arrow { transform: translateX(3px); }
 
     /* FORM */
-    .form-wrap {
-      background: var(--ink-mid);
-      border: 1px solid rgba(184,147,58,0.15);
-      border-radius: 2px;
-      padding: 2rem 2rem 1.8rem;
-      margin-bottom: 3rem;
-    }
+    .form-card { background: rgba(255,255,255,0.92); border-radius: 16px; border: 1px solid var(--cream-mid); padding: 1.4rem 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    .form-intro { font-size: 13px; color: var(--text-sub); line-height: 1.8; margin-bottom: 1.1rem; }
 
-    .form-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 1.6rem;
-    }
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 12px; font-weight: 700; color: var(--wine-dark); margin-bottom: 6px; letter-spacing: .04em; }
+    .required { color: var(--wine-mid); margin-left: 3px; }
 
-    .form-group { margin-bottom: 1.2rem; }
-
-    .form-label {
-      display: block;
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-
-    .required { color: var(--crimson-light); margin-left: 3px; }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      background: rgba(26,10,15,0.6);
-      border: 1px solid rgba(184,147,58,0.2);
-      border-radius: 1px;
-      color: var(--cream);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      padding: 0.65rem 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-input::placeholder,
-    .form-textarea::placeholder { color: var(--text-muted); font-style: italic; }
-
-    .form-input:focus,
-    .form-textarea:focus { border-color: rgba(184,147,58,0.55); }
-
+    .form-input, .form-textarea { width: 100%; background: #fff; border: 1px solid var(--cream-dark); border-radius: 10px; color: var(--text); font-family: var(--font); font-size: 13.5px; padding: 9px 13px; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form-input::placeholder, .form-textarea::placeholder { color: #bbb; }
+    .form-input:focus, .form-textarea:focus { border-color: var(--wine-mid); box-shadow: 0 0 0 3px rgba(128,0,43,0.08); }
     .form-textarea { resize: vertical; min-height: 130px; }
 
-    .form-submit {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--crimson);
-      border: 1px solid var(--crimson-light);
-      border-radius: 1px;
-      color: var(--cream);
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.75rem 2rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: background 0.2s;
-    }
+    .form-submit { display: inline-flex; align-items: center; gap: 7px; background: var(--wine-dark); border: none; border-radius: 20px; color: #fff; font-family: var(--font); font-size: 14px; padding: 10px 26px; cursor: pointer; margin-top: 6px; transition: background .15s; }
+    .form-submit:hover { background: var(--wine-mid); }
 
-    .form-submit:hover { background: var(--crimson-light); }
-    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .form-success {
-      background: rgba(128,0,43,0.15);
-      border: 1px solid rgba(128,0,43,0.4);
-      border-radius: 1px;
-      padding: 1rem 1.2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: var(--cream-dark);
-      font-size: 0.95rem;
-      margin-bottom: 1.2rem;
-      display: none;
-    }
+    .form-success { background: #f5e0e6; border: 1px solid var(--wine-light); border-radius: 12px; padding: 14px 18px; text-align: center; color: var(--wine-dark); font-size: 14px; margin-bottom: 16px; display: none; }
 
     /* NOTICE */
-    .notice {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.9;
-      border-top: 1px solid rgba(184,147,58,0.12);
-      padding-top: 1.5rem;
-      margin-bottom: 3rem;
-    }
+    .notice { font-size: 12px; color: rgba(245,237,224,0.55); line-height: 1.9; text-align: center; margin-top: 1rem; }
 
-    /* FOOTER */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(184,147,58,0.15);
-      padding: 2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 2rem;
-    }
+    footer { text-align: center; padding: 1.25rem; font-size: 12px; color: rgba(245,237,224,0.6); border-top: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.15); }
+    footer a { color: var(--cream-mid); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    footer p { font-size: 0.72rem; letter-spacing: 0.15em; color: var(--text-muted); }
-
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      opacity: 0.6;
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 1.2rem; }
-      .nav-links { gap: 1.2rem; }
-      .page { padding: 6rem 1.2rem 4rem; }
-      .link-grid { grid-template-columns: 1fr; }
-      .form-wrap { padding: 1.4rem 1.2rem; }
-      footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.5rem; }
-    }
+    @media (max-width: 480px) { .link-grid { grid-template-columns: 1fr; } main { padding: 0 .75rem 3rem; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a class="nav-logo" href="index.html">THE DRAMA PARLOUR</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="ranking.html">Ranking</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-    </ul>
-  </nav>
+<header>
+  <a class="logo" href="index.html">🎭 The Drama Parlour</a>
+  <nav><ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="ranking.html">ランキング</a></li>
+    <li><a href="blog.html">ブログ</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+  </ul></nav>
+</header>
 
-  <main class="page">
+<main>
 
-    <p class="page-title">About</p>
-    <p class="page-subtitle">The Drama Parlour について</p>
+  <div class="page-header">
+    <h1>🔗 About & Links</h1>
+    <p>ご連絡は各SNSまたは下のフォームからどうぞ。</p>
+  </div>
 
-    <!-- ABOUT -->
-    <div class="section-label">This Site</div>
-    <p class="about-text">
-      ドラマ・映画・小説・漫画——<em>観て、読んで、感じたことの記録</em>。<br />
-      ここは感想を残しておく、自分だけの小さな応接室です。<br /><br />
-      ランキングは随時更新し、年末に確定します。<br />
-      ネタバレを含む記事があります。ご注意ください。
-    </p>
+  <div class="section-head">🎭 このサイトについて</div>
 
-    <!-- LINKS -->
-    <div class="section-label">Links</div>
-    <div class="link-grid">
+  <div class="about-card">
+    <h2>📖 The Drama Parlour</h2>
+    <p>ドラマ・映画・小説・漫画——観て、読んで、感じたことを記録していくAzalea72のサイトです。</p>
+    <p>ランキングは随時更新し、年末に確定します。ネタバレを含む記事があります。ご注意ください。</p>
+    <p>好きなジャンルはミステリー・SF・コメディドラマ。Only Murders in the Buildingがきっかけでドラマにハマりました。</p>
+  </div>
 
-      <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
-        <div class="link-icon">🦋</div>
-        <div class="link-text">
-          <span class="link-name">Bluesky</span>
-          <span class="link-desc">近況・お知らせ</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
+  <div class="section-head">💬 SNS・リンク</div>
 
-      <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
-        <div class="link-icon">✒️</div>
-        <div class="link-text">
-          <span class="link-name">カクヨム</span>
-          <span class="link-desc">小説を掲載</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-
-      <a class="link-card" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/" target="_blank" rel="noopener">
-        <div class="link-icon">🎨</div>
-        <div class="link-text">
-          <span class="link-name">漫画掲載サイト</span>
-          <span class="link-desc">漫画を投稿中</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-
-      <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
-        <div class="link-icon">📖</div>
-        <div class="link-text">
-          <span class="link-name">書評サイト</span>
-          <span class="link-desc">小説のレビュー</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-
-    </div>
-
-    <!-- CONTACT FORM -->
-    <div class="section-label">Contact</div>
-    <div class="form-wrap">
-      <p class="form-intro">ご質問・ご感想はこちらからどうぞ。</p>
-
-      <div class="form-success" id="form-success">
-        ✉️ メッセージを送信しました。ありがとうございます。
+  <div class="link-grid">
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">近況・お知らせ</span>
       </div>
+      <span class="link-arrow">›</span>
+    </a>
+    <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+      <div class="link-icon">✒️</div>
+      <div class="link-text">
+        <span class="link-name">カクヨム</span>
+        <span class="link-desc">小説を掲載</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">漫画掲載サイト</span>
+        <span class="link-desc">漫画を投稿中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+      <div class="link-icon">📖</div>
+      <div class="link-text">
+        <span class="link-name">書評サイト</span>
+        <span class="link-desc">小説のレビュー</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+  </div>
 
-      <form id="contact-form">
-        <div class="form-group">
-          <label class="form-label" for="name">お名前</label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="名前" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
-          <textarea class="form-textarea" id="message" name="message" placeholder="メッセージを入力してください…" rows="6" required></textarea>
-        </div>
-        <button class="form-submit" type="submit">送信する</button>
-      </form>
+  <div class="section-head">📮 お問い合わせ</div>
+
+  <div class="form-card">
+    <p class="form-intro">ご質問・ご感想はこちらからどうぞ。</p>
+
+    <div class="form-success" id="form-success">
+      ✉️ メッセージを送信しました。ありがとうございます！
     </div>
 
-    <!-- NOTICE -->
-    <p class="notice">
-      当サイトに掲載されている文章・レビューについて、AI学習への利用、無断転載・二次利用を禁止します。<br />
-      Please refrain from using any text or reviews on this website for AI training, unauthorized reproduction, or secondary use.
-    </p>
+    <form id="contact-form">
+      <div class="form-group">
+        <label class="form-label" for="name">お名前</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="名前">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="メッセージを入力してください…" rows="6" required></textarea>
+      </div>
+      <button class="form-submit" type="submit">📮 送信する</button>
+    </form>
+  </div>
 
-  </main>
+  <p class="notice">
+    当サイトに掲載されている文章・レビューについて、AI学習への利用、無断転載・二次利用を禁止します。<br>
+    Please refrain from using any text or reviews on this website for AI training, unauthorized reproduction, or secondary use.
+  </p>
 
-  <footer>
-    <p>© The Drama Parlour &nbsp;·&nbsp; All rights reserved</p>
-    <div class="footer-logo">THE DRAMA PARLOUR</div>
-  </footer>
+</main>
 
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const success = document.getElementById('form-success');
-      success.style.display = 'block';
-      this.reset();
-      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-  </script>
+<footer>
+  © The Drama Parlour &nbsp;|&nbsp;
+  <a href="ranking.html">ランキング</a> &nbsp;|&nbsp;
+  <a href="blog.html">ブログ</a> &nbsp;|&nbsp;
+  <a href="about.html">About</a>
+</footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const success = document.getElementById('form-success');
+    success.style.display = 'block';
+    this.reset();
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>
 
 </body>
 </html>
