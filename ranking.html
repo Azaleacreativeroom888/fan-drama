@@ -34,10 +34,10 @@
     /* TOP 5 */
     .top5 { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.75rem; }
 
-    .top-card { background: rgba(255,255,255,0.92); border-radius: 16px; border: 1px solid var(--cream-mid); padding: 1rem 1.25rem; display: flex; gap: 14px; align-items: flex-start; transition: transform .15s, box-shadow .15s; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+    .top-card { background: rgba(255,255,255,0.92); border-radius: 16px; border: 1px solid var(--cream-mid); padding: 1rem 1.25rem; display: flex; gap: 14px; align-items: center; transition: transform .15s, box-shadow .15s; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
     .top-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
 
-    .rank-badge { min-width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 2px; font-family: 'Playfair Display', serif; }
+    .rank-badge { min-width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; font-family: 'Playfair Display', serif; }
     .badge-1 { background: var(--wine); color: var(--cream); font-size: 15px; }
     .badge-2 { background: var(--wine-mid); color: #fff; }
     .badge-3 { background: var(--wine-light); color: #fff; }
@@ -46,15 +46,13 @@
 
     .top-card-body { flex: 1; }
     .top-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.5; font-family: var(--font); }
-
-    .genre-tag { display: inline-block; font-size: 11px; color: var(--wine-dark); background: #f5e0e6; border-radius: 8px; padding: 1px 8px; margin-bottom: 6px; }
     .top-card-text { font-size: 13px; color: var(--text-sub); line-height: 1.75; }
 
     /* ALL REVIEWS */
     /*
       コピペ用:
       <div class="review-item">
-        <div class="review-item-title">タイトル <span class="genre-tag">ジャンル</span></div>
+        <div class="review-item-title">タイトル</div>
         <div class="review-item-text">感想</div>
       </div>
     */
@@ -63,7 +61,7 @@
     .review-item { background: rgba(255,255,255,0.88); border-radius: 12px; border: 1px solid var(--cream-mid); padding: .8rem 1rem; transition: background .12s; }
     .review-item:hover { background: rgba(255,255,255,0.98); }
 
-    .review-item-title { font-size: 14px; font-weight: 700; color: var(--wine-dark); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-family: var(--font); }
+    .review-item-title { font-size: 14px; font-weight: 700; color: var(--wine-dark); margin-bottom: 3px; font-family: var(--font); }
     .review-item-text { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
     .review-item-text:empty::after { content: "—"; color: #ccc; }
 
@@ -100,7 +98,6 @@
     <div class="top-card">
       <div class="rank-badge badge-1">1</div>
       <div class="top-card-body">
-        <div class="genre-tag">ミステリー</div>
         <div class="top-card-title">マーダーズ・イン・ビルディング</div>
         <div class="top-card-text">クスッとなる脚本が最高で、更に本格的なミステリーなのが良い。面白すぎてむしろ誰にも教えたくない。</div>
       </div>
@@ -109,36 +106,32 @@
     <div class="top-card">
       <div class="rank-badge badge-2">2</div>
       <div class="top-card-body">
-        <div class="genre-tag">コメディ</div>
-        <div class="top-card-title">The Big Bang Theory</div>
-        <div class="top-card-text">まじで10シーズンもあるのに、一気見できたし最後も納得の終わり方。最高。</div>
+        <div class="top-card-title">Umbrella Academy</div>
+        <div class="top-card-text">久々にハマったドラマ。エイダン・ギャラガーのファイブがまじで最高。</div>
       </div>
     </div>
 
     <div class="top-card">
       <div class="rank-badge badge-3">3</div>
       <div class="top-card-body">
-        <div class="genre-tag">サスペンス</div>
-        <div class="top-card-title">LOST</div>
-        <div class="top-card-text"> </div>
+        <div class="top-card-title">季節のない街</div>
+        <div class="top-card-text">震災のあと仮設住宅に住みついてる住人たちの話。面白かった。なるほど、そういう視点があるのかと。</div>
       </div>
     </div>
 
     <div class="top-card">
       <div class="rank-badge badge-4">4</div>
       <div class="top-card-body">
-        <div class="genre-tag">コメディ</div>
-        <div class="top-card-title">ヤングシェルドン</div>
-        <div class="top-card-text">TBBTが好きだから面白かった。こことここが繋がってるのかって納得した。</div>
+        <div class="top-card-title">The Big Bang Theory</div>
+        <div class="top-card-text">まじで10シーズンもあるのに、一気見できたし最後も納得の終わり方。最高。</div>
       </div>
     </div>
 
     <div class="top-card">
       <div class="rank-badge badge-5">5</div>
       <div class="top-card-body">
-        <div class="genre-tag">ミステリー</div>
         <div class="top-card-title">GOTHAM</div>
-        <div class="top-card-text">面白い。なんで打ち切りになってしまったんだ……。</div>
+        <div class="top-card-text">面白い。なんで打ち切りになってしまったんだ……。もっと観たかった。</div>
       </div>
     </div>
 
@@ -149,205 +142,215 @@
   <div class="review-list">
 
     <div class="review-item">
-      <div class="review-item-title">アンナチュラル <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">アンナチュラル</div>
       <div class="review-item-text">面白い。まじで一気見した。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">The O.C. <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">The O.C.</div>
       <div class="review-item-text">面白いし、キャラへの憧れもあるし、展開も変わるから面白いし、最高。アメリカの青春を味わえる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Nashville <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Nashville</div>
       <div class="review-item-text">これでもかってくらいアメリカを味わえる最高のドラマ。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">階段下のゴッホ <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">階段下のゴッホ</div>
       <div class="review-item-text">自分が絵画が好きだったから楽しんで観れた。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">花子とアン <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">花子とアン</div>
       <div class="review-item-text">こんなに夢中になって観た朝ドラはない。英語を学ぶ喜びが伝わってくる。後半ももっと英語学習にフォーカスしてほしかった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Emily in Paris <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Emily in Paris</div>
       <div class="review-item-text">面白かった。フランスの描写は誇張表現だと思うけど、ちょっとフランスが好きになった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">HERO <span class="genre-tag">ファンタジー</span></div>
-      <div class="review-item-text">検事が現場に行くのはアリティーはあんまりないけど、面白かった。木村拓哉の演技は微妙なんだけど、脇役が演技上手い人固めててよかった。</div>
+      <div class="review-item-title">ヤングシェルドン</div>
+      <div class="review-item-text">TBBTが好きだから面白かった。さあ、勉強するぞ！ってやる気がでてくる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">ゲゲゲの女房 <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">HERO</div>
+      <div class="review-item-text">検事が現場に行くのはリアリティーはあんまりないけど、面白かった。木村拓哉の演技は微妙なんだけど、脇役が演技上手い人固めててよかった。</div>
+    </div>
+
+    <div class="review-item">
+      <div class="review-item-title">ゲゲゲの女房</div>
       <div class="review-item-text">面白かった。漫画も好きなので、当時の漫画家ってこういう生活だったのかなと想像した。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">How I Met Your Mother <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">How I Met Your Mother</div>
       <div class="review-item-text">すごく面白かった。最初から最後までテーマに沿ってたと思う。でも最後の１話で台無しにした感じはある。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">TRICK <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">LOST</div>
+      <div class="review-item-text">面白いんだけど、話が重くて一気見はできなかった。サバイバルにハラハラした。</div>
+    </div>
+
+    <div class="review-item">
+      <div class="review-item-title">TRICK</div>
       <div class="review-item-text">久々に観たら面白かった。一気見できた。大人になってから観たほうが面白さが増した気がする。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Liar Game <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Liar Game</div>
       <div class="review-item-text">面白かった。キャラが良すぎる。ただ漫画に近づけるためにかつらにすると不自然になってしまうのでそれは止めた方が良いと思う。オッケーオッケー！</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Life Unexpected <span class="genre-tag">ミステリー</span></div>
+      <div class="review-item-title">Life Unexpected</div>
       <div class="review-item-text">面白かったんだけど打ち切りにあってストーリー半ばで終わった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">龍馬伝 <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">龍馬伝</div>
       <div class="review-item-text">私が幕末にハマったきっかけのドラマ。</div>
     </div>
-    
+
     <div class="review-item">
-      <div class="review-item-title">JIN－仁－ <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">JIN－仁－</div>
       <div class="review-item-text">すごく好きなドラマ。時代ものとタイムスリップを最初にやったのがこの作品だと思う。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">うぬぼれ刑事 <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">うぬぼれ刑事</div>
       <div class="review-item-text">めっちゃ好きなんだよな、このドラマ。長瀬智也の演技も良いし、クドカンの脚本も良いし、ちゃんと笑える部分あって最高なんだよね。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">ブラッシュアップライフ <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">ブラッシュアップライフ</div>
       <div class="review-item-text">冒頭数ページ読んだだけで、面白い。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">義母と娘のブルース <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">義母と娘のブルース</div>
       <div class="review-item-text">緩急あって面白かった。悲しいところは悲しくて、クスッとするところもあって、演技も良かったように感じる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">いつかこの恋を思い出してきっと泣いてしまう <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">いつかこの恋を思い出してきっと泣いてしまう</div>
       <div class="review-item-text">序盤はかなり面白かったんだけど、後半はあんまり印象に残らなかった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">ブザービート <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">ブザービート</div>
       <div class="review-item-text">恋愛ものもスポーツものも苦手な私でも面白いと思ったしドキドキした。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">あたなの番です <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">あなたの番です</div>
       <div class="review-item-text">久々にハマったドラマかもしれない。面白かった。ただエンディングに納得はしてない。殺さなくても良いキャラが殺された気がする。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">The Bear <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">The Bear</div>
       <div class="review-item-text">シーズン１はすごく面白いんだけど、ちょっとずつ勢いは落ちてく。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Gossip Girl <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Gossip Girl</div>
       <div class="review-item-text">ひえ～アメリカの金持ち人間関係怖い。でもそのヒヤヒヤ感が面白かった。ただ同じ展開が繰り返されてたので飽きてくるかもしれない。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">流星の絆 <span class="genre-tag">ドラマ</span></div>
-      <div class="review-item-text">最後が気になって一気見してしまった。青春とミステリーってすごく良い組み合わせだなと思う。 </div>
+      <div class="review-item-title">流星の絆</div>
+      <div class="review-item-text">最後が気になって一気見してしまった。青春とミステリーってすごく良い組み合わせだなと思う。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">陸王 <span class="genre-tag">ミステリー</span></div>
+      <div class="review-item-title">陸王</div>
       <div class="review-item-text">私はスポコンもので大好きだったけど、人に薦めても面白いと思ってくれなさそう。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Nのために <span class="genre-tag">ミステリー</span></div>
+      <div class="review-item-title">Nのために</div>
       <div class="review-item-text">良いドラマだった。青春とミステリーの上手い掛け合わせだった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">SPEC <span class="genre-tag">ドラマ</span></div>
-      <div class="review-item-text">こういうローファンを作るのが日本のドラマは上手い。能力の見せ方が上手かった。面白い。 </div>
+      <div class="review-item-title">SPEC</div>
+      <div class="review-item-text">こういうローファンを作るのが日本のドラマは上手い。能力の見せ方が上手かった。面白い。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">ドラゴン桜（2005） <span class="genre-tag">ドラマ</span></div>
-      <div class="review-item-text">面白かった。こういう勉強したくなるような……やる気を後押ししてくれるようなドラマって好きなんだよね。 </div>
+      <div class="review-item-title">ドラゴン桜（2005）</div>
+      <div class="review-item-text">面白かった。こういう勉強したくなるような……やる気を後押ししてくれるようなドラマって好きなんだよね。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">勇者ヨシヒコと魔王城 <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">勇者ヨシヒコと魔王城</div>
       <div class="review-item-text">テンポがひたすら悪いけど、なぜか最後まで観てしまった。観終わったあと、ストーリーは思い出せないけど佐藤二朗だけは思い出せる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">花ざかりの君たちへ〜イケメン♂パラダイス〜 <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">花ざかりの君たちへ〜イケメン♂パラダイス〜</div>
       <div class="review-item-text">ぜんぜん漫画のストーリーに沿ってないし、今観るとヤバいな（笑）でも何も考えずにイケメンだけ観たいなら良いドラマだと思う。当時の新進気鋭の俳優が観られる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">君の花になる <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">君の花になる</div>
       <div class="review-item-text">「アイドルと恋愛」という内容見て、すごく馬鹿にしてたのに観たらすごく面白かった（笑）</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">池袋ウェストゲートパーク <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">池袋ウェストゲートパーク</div>
       <div class="review-item-text">面白いんだけど、テンポが悪い。もうちょっと早く進んでもいいと思う。この時代の長瀬智也が爽やかイケメンすぎる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Walking Dead <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Walking Dead</div>
       <div class="review-item-text">面白いんだけどテンポがひたすら悪い。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">Game of Thrones <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">Game of Thrones</div>
       <div class="review-item-text">うーん、微妙。でもこのドラマ好きな人に話したらシーズン２まで観てほしいとのことだったのでシーズン２まで観てみようと思う。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">White Collar <span class="genre-tag">ミステリー</span></div>
+      <div class="review-item-title">White Collar</div>
       <div class="review-item-text">ちょっとテンポが悪い。これ系のドラマ好きなんだけどハマらなかった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">This is us <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">This is us</div>
       <div class="review-item-text">ちょっとテンポが悪い。ストーリー自体は面白いところもあった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">半沢直樹（2013年） <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">半沢直樹（2013年）</div>
       <div class="review-item-text">ストーリーは面白いんだけどテンポが悪い。登場人物の顔の変化が面白い。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">ドラゴン桜（2021） <span class="genre-tag">ドラマ</span></div>
-      <div class="review-item-text">2005年より非現実感が増した……？ </div>
+      <div class="review-item-title">ドラゴン桜（2021）</div>
+      <div class="review-item-text">2005年より非現実感が増した……？</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">コードブルー <span class="genre-tag">ファンタジー</span></div>
+      <div class="review-item-title">コードブルー</div>
       <div class="review-item-text">ストーリーは面白いけどテンポが悪い。登場人物の無駄な会話が多くて、早く医療の描写をやってほしかった。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">花より男子 <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">花より男子</div>
       <div class="review-item-text">学生のときは楽しかったんだけど、大人になるとちょっと微妙だなと思う。セリフが臭すぎる。</div>
     </div>
 
     <div class="review-item">
-      <div class="review-item-title">逃げるは恥だが役に立つ <span class="genre-tag">ドラマ</span></div>
+      <div class="review-item-title">逃げるは恥だが役に立つ</div>
       <div class="review-item-text">最初は興味深いなと思ったけど、テンポが悪いしゆっくりすぎる。</div>
     </div>
-    
+
   </div>
 
 </main>
